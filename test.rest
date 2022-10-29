@@ -1,22 +1,37 @@
-GET http://localhost:3000/users
-###
-GET http://localhost:3000/users/find/13
-###
-DELETE http://localhost:3000/users/1
+### Get all user data
+GET {{host}}/users
+### Find user by id
+GET {{host}}/users/find/5
+### Get user product
+# relation/('product', 'cart')
+GET {{host}}/users/relation/product
+### Logout
+GET {{host}}/users/logout
+### Delete user by id
+DELETE {{host}}/users/1
 
-###
-POST http://localhost:3000/users
+### Register
+POST {{host}}/users/register
 Content-Type: application/json
 
 {
   "name": "wahyu triono",
-  "email": "sa@dmail.com",
+  "email": "ssa@dmail.com",
   "password": "qweasdzxc",
   "confirmPassword": "qweasdzxc"
 }
 
-###
-PUT http://localhost:3000/users/1
+### Login
+POST {{host}}/users/login
+Content-Type: application/json
+
+{
+  "email": "ssa@dmail.com",
+  "password": "qweasdzxc"
+}
+
+### Update user by id
+PUT {{host}}/users/1
 Content-Type: application/json
 
 {

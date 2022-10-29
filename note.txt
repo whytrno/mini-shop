@@ -7,3 +7,5 @@ ubah app.js menjadi es6
 ubah routes/index.js dan users.js menjadi es6
 
 ubah app.js __dirname
+
+Saya juga akan berbagi kepada Anda bagaimana membuat refresh token dan menyimpan refresh token ke dalam httpOnly cookie sehingga aplikasi kita akan aman dari serangan XSS (Cross-site Scripting) dan CSRF (Cross-site Request Forgery).

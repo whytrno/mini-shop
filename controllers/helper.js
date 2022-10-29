@@ -53,7 +53,9 @@ export const errorHandler = (error) => {
                 errorCode: error.code,
             }
         }
-    }else{
+    } else if (error.name === 'NotFoundError') {
+        return 'Data not found'
+    } else{
         return error
     }
 }
