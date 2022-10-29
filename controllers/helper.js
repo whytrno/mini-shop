@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client'
+import {Prisma} from '@prisma/client'
 import Joi from 'joi'
 import log from 'log-to-file'
 
@@ -8,11 +8,18 @@ const userSchema = Joi.object({
     password: Joi.string().min(7).required(),
     confirmPassword: Joi.ref("password")
 })
+const userChangeProfileSchema = Joi.object({
+    name: Joi.string(),
+    email: Joi.string().email(),
+    password: Joi.string().min(7),
+    confirmPassword: Joi.ref("password")
+})
+
 export const validator = (type, payload) => {
     if(type === 'user') {
-        const checked =  userSchema.validate(payload, { abortEarly: false })
-
-        return checked
+        return userSchema.validate(payload, {abortEarly: false})
+    } else if(type === 'userChangeProfile'){
+        return userChangeProfileSchema.validate(payload, {abortEarly: false})
     }
 }
 

@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client'
 import { validator, checkNumber, joiBeautifyError, errorHandler } from './helper.js'
 import bcrypt from 'bcryptjs'
 import jwt from "jsonwebtoken";
+import { sendMail } from "./sendMail.js";
 
 var prisma = new PrismaClient()
 
@@ -23,7 +24,206 @@ const dataInclude = (type) => {
     }
 }
 
-// GET
+// AUTH
+export const register = async (req, res) => {
+    const { error, value } = validator('user', req.body)
+
+    if (!error) {
+        // menghapus value.confirmPassword agar dapat dimasukan ke db
+        // TODO: seharusnya ini ada di helper
+        delete value.confirmPassword
+        const salt = bcrypt.genSaltSync(10);
+        value.password = bcrypt.hashSync(value.password, salt);
+
+        try{
+            const user = await prisma.user.create({
+                data: value
+            })
+
+            const refreshToken = jwt.sign({
+                id: user.id,
+                email: user.email,
+                role: user.role
+            }, process.env.REFRESH_TOKEN_SECRET, {
+                expiresIn: '1d'
+            });
+
+            await prisma.user.update({
+                where: {
+                    id: user.id
+                },
+                data: {
+                    refreshToken: refreshToken
+                }
+            })
+
+            await sendMail({
+                type: 'verification',
+                user: user
+            })
+
+            res.status(201).json({
+                status: "success",
+                message: "Successfully register, please check your email to verify your account"
+            })
+        }catch(error){
+            res.status(400).json({
+                status: 'error',
+                message: errorHandler(error)
+            })
+        }
+    } else {
+        res.status(400).json({
+            status: "error",
+            message: joiBeautifyError(error)
+        })
+    }
+}
+export const login = async (req, res) => {
+    try {
+        if(!req.body.email) throw "Please enter your email"
+
+        const user = await prisma.user.findUniqueOrThrow({
+            where: {
+                email: req.body.email
+            },
+        })
+        const checkPass = await bcrypt.compare(req.body.password, user.password);
+        if (!checkPass) throw 'Your email or password is wrong, please re enter your credentials'
+
+        if(user.emailVerifiedAt === null) throw 'Your email has not been verified, please verify first'
+
+        const accessToken = jwt.sign({
+            id: user.id,
+            email: user.email,
+            role: user.role
+        }, process.env.ACCESS_TOKEN_SECRET, {
+            expiresIn: '20s'
+        });
+        const refreshToken = jwt.sign({
+            id: user.id,
+            email: user.email,
+            role: user.role
+        }, process.env.REFRESH_TOKEN_SECRET, {
+            expiresIn: '1d'
+        });
+
+        await prisma.user.update({
+            where: {
+                email: req.body.email
+            },
+            data: {
+                refreshToken: refreshToken,
+            },
+        })
+
+        user.token = accessToken
+
+        res.cookie('refreshToken', refreshToken, {
+            httpOnly: true,
+            maxAge: 24 * 60 * 60 * 1000
+        });
+
+        res.status(200).json({
+            status: 'success',
+            token: accessToken
+        })
+    } catch(error) {
+        if(error.name === 'NotFoundError') error = 'Your email or password is wrong, please re enter your credentials'
+        res.status(400).json({
+            status: 'error',
+            message: errorHandler(error)
+        })
+    }
+}
+export const logout = async (req, res) => {
+    try{
+        const refreshToken = req.cookies.refreshToken
+        if(!refreshToken) throw 'Token not found, you are not logged in'
+
+        const user = await prisma.user.findUniqueOrThrow({
+            where: {
+                refreshToken: refreshToken
+            }
+        })
+
+        await prisma.user.update({
+            where: {
+                id: user.id
+            },
+            data: {
+                refreshToken: null
+            }
+        })
+        res.clearCookie('refreshToken')
+
+        res.status(200).json({
+            status: 'success',
+            message: 'Successfully logout'
+        })
+    } catch (error) {
+        res.status(500).json({
+            status: 'error',
+            message: errorHandler(error)
+        })
+    }
+}
+
+// USER
+export const profile = async (req, res) => {
+    try{
+        const user = await prisma.user.findUniqueOrThrow({
+            where: {
+                id: req.id
+            },
+            select: dataInclude()
+        })
+
+        res.status(200).json({
+            status: 'success',
+            data: user
+        })
+    }catch(error){
+        res.status(400).json({
+            status: 'error',
+            error: errorHandler(error)
+        })
+    }
+}
+export const changeProfile = async (req, res) => {
+    const { error, value } = validator('userChangeProfile', req.body)
+
+    if (!error) {
+        delete value.confirmPassword
+        const salt = bcrypt.genSaltSync(10);
+        value.password = bcrypt.hashSync(value.password, salt);
+
+        try{
+            await prisma.user.update({
+                where: {
+                    id: req.id
+                },
+                data: value
+            })
+            res.status(201).json({
+                status: "success",
+                message: "Data successfully updated"
+            })
+        }catch(error){
+            res.status(400).json({
+                status: 'error',
+                message: errorHandler(error)
+            })
+        }
+    } else {
+        res.status(400).json({
+            status: "error",
+            message: joiBeautifyError(error)
+        })
+    }
+}
+
+// ADMIN
 export const getAll = async (req, res) => {
     try {
         const users = await prisma.user.findMany({
@@ -100,126 +300,6 @@ export const getRelation = async (req, res) => {
         })
     }
 }
-
-// POST, UPDATE, DELETE
-export const register = async (req, res) => {
-    const { error, value } = validator('user', req.body)
-
-    if (!error) {
-        // menghapus value.confirmPassword agar dapat dimasukan ke db
-        // TODO: seharusnya ini ada di helper
-        delete value.confirmPassword
-        const salt = bcrypt.genSaltSync(10);
-        value.password = bcrypt.hashSync(value.password, salt);
-
-        try{
-            await prisma.user.create({
-                data: value
-            })
-            res.status(201).json({
-                status: "success",
-                message: "Data successfully stored"
-            })
-        }catch(error){
-            res.status(400).json({
-                status: 'error',
-                message: errorHandler(error)
-            })
-        }
-    } else {
-        res.status(400).json({
-            status: "error",
-            message: joiBeautifyError(error)
-        })
-    }
-}
-export const login = async (req, res) => {
-    try {
-        if(!req.body.email) throw "Please enter your email"
-
-        const user = await prisma.user.findUniqueOrThrow({
-            where: {
-                email: req.body.email
-            },
-        })
-        const checkPass = await bcrypt.compare(req.body.password, user.password);
-        if (!checkPass) throw 'Your email or password is wrong, please re enter your credentials'
-
-        const accessToken = jwt.sign({
-            id: user.id,
-            email: user.email
-        }, process.env.ACCESS_TOKEN_SECRET, {
-            // TODO: ONLY ON DEVELOPMENT EXPIRESIN IS 2h, WHEN PRODUCTION MUST BE 20s FOR SECURITY
-            expiresIn: '20s'
-            // expiresIn: '2h'
-        });
-        const refreshToken = jwt.sign({
-            id: user.id,
-            email: user.email
-        }, process.env.REFRESH_TOKEN_SECRET, {
-            expiresIn: '1d'
-        });
-
-        await prisma.user.update({
-            where: {
-                email: req.body.email
-            },
-            data: {
-                refreshToken: refreshToken,
-            },
-        })
-
-        user.token = accessToken
-
-        res.cookie('refreshToken', refreshToken, {
-            httpOnly: true,
-            maxAge: 24 * 60 * 60 * 1000
-        });
-
-        res.status(200).json({
-            status: 'success',
-            token: accessToken
-        })
-    } catch(error) {
-        if(error.name === 'NotFoundError') error = 'Your email or password is wrong, please re enter your credentials'
-        res.status(400).json({
-            status: 'error',
-            message: errorHandler(error)
-        })
-    }
-}
-export const logout = async (req, res) => {
-    try{
-        const refreshToken = req.cookies.refreshToken
-        if(!refreshToken) throw 'Token not found, you are not logged in'
-
-        const user = await prisma.user.findUniqueOrThrow({
-            where: {
-                refreshToken: refreshToken
-            }
-        })
-
-        await prisma.user.update({
-            where: {
-                id: user.id
-            },
-            data: {
-                refreshToken: null
-            }
-        })
-        res.clearCookie('refreshToken')
-
-        res.status(200).json({
-            status: 'success',
-            message: 'Successfully logout'
-        })
-    } catch (error) {
-        res.status(500).json({
-            status: 'error',
-            message: errorHandler(error)
-        })
-    }
-}
 export const update = async (req, res) => {
     const { error, value } = validator('user', req.body)
 
@@ -271,6 +351,67 @@ export const deleteData = async (req, res) => {
     }catch(error) {
         res.status(400).json({
             status: "error",
+            message: errorHandler(error)
+        })
+    }
+}
+
+// VERIFY EMAIL
+export const sendVerifyEmail = async (req, res) => {
+    try{
+        const user = await prisma.user.findUniqueOrThrow({
+            where: {
+                email: req.body.email
+            }
+        })
+
+        if(user.emailVerifiedAt != null) throw 'You cant verify your email, because your email is already verified'
+
+        await sendMail({
+            type: 'verification',
+            user: user
+        }, res)
+
+        res.status(200).json({
+            status: 'success',
+            message: 'Successfuly send verification email, please check your email to verification your account'
+        })
+    } catch (error) {
+        res.status(500).json({
+            status: 'error',
+            message: errorHandler(error)
+        })
+    }
+}
+export const verifyEmail = async (req, res) => {
+    try{
+        const refreshToken = req.query.token
+        let date = new Date();
+        date.toISOString();
+
+        const user = await prisma.user.findUniqueOrThrow({
+            where: {
+                refreshToken: refreshToken
+            }
+        })
+        if(user.emailVerifiedAt != null) throw 'You cant verify your email, because your email is already verified'
+
+        await prisma.user.update({
+            where: {
+                refreshToken: refreshToken
+            },
+            data: {
+                emailVerifiedAt: date
+            }
+        })
+        res.status(200).json({
+            status: 'success',
+            message: 'Your email successfully verified'
+        })
+    } catch(error) {
+        if(error.code === 'P2025') error = 'Verification code is invalid, please request new verification email'
+        res.status(500).json({
+            status: 'error',
             message: errorHandler(error)
         })
     }

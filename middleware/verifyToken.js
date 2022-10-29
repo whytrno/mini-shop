@@ -16,7 +16,8 @@ export const verifyToken = (req, res, next) => {
 
         // melempar req.email ke route selanjutnya agar bisa dipanggil
         req.id = decoded.id
-        req.email = decoded.email;
+        req.email = decoded.email
+        req.role = decoded.role
 
         // agar server dilanjutkan ke route selanjutnya
         next();
