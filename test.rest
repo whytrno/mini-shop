@@ -1,0 +1,27 @@
+GET http://localhost:3000/users
+###
+GET http://localhost:3000/users/find/13
+###
+DELETE http://localhost:3000/users/1
+
+###
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "name": "wahyu triono",
+  "email": "sa@dmail.com",
+  "password": "qweasdzxc",
+  "confirmPassword": "qweasdzxc"
+}
+
+###
+PUT http://localhost:3000/users/1
+Content-Type: application/json
+
+{
+  "name": "wahyu triono",
+  "email": "sa@dmail.com",
+  "password": "qweasdzxc",
+  "confirmPassword": "qweasdzxc"
+}

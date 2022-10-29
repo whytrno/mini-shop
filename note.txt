@@ -1,0 +1,9 @@
+tambahkan baris kode berikut pada package.json
+	"type": "module",
+
+ubah bin/www menjadi bin/www.js
+ubah bin/www.js menjadi es6
+ubah app.js menjadi es6
+ubah routes/index.js dan users.js menjadi es6
+
+ubah app.js __dirname
