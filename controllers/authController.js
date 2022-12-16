@@ -25,7 +25,7 @@ module.exports.login = async (req, res) => {
         })
 
         const checkPass = await bcrypt.compare(password, user.password);
-        if (!checkPass) throw new Error({
+        if (!checkPass) throw ({
             code: 400,
             data: {
                 status: 'error',
