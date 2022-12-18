@@ -64,3 +64,23 @@ describe('=== PUBLIC ===', () => {
             })
     })
 })
+
+        // it('POST LOGIN', () => {
+        //     return request(app)
+        //         .post('/login')
+        //         .send({
+        //             email: 'whytrno2205@gmail.com',
+        //             password: 'qweasdzxc'
+        //         })
+        //         .expect('Content-Type', /json/)
+        //         .expect(200)
+        //         .then((response) => {
+        //             expect(response.body).toEqual(
+        //                 expect.objectContaining({
+        //                     status: expect.any(String),
+        //                     message: expect.any(String),
+        //                     token: expect.any(String),
+        //                 })
+        //             )
+        //         })
+        // })

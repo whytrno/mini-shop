@@ -2,7 +2,6 @@ const model = require('../models')
 const { beautyError } = require('./helper/main')
 
 module.exports.create = async (req, res) => {
-    const { path } = req.body
     const user_id = req.login_id
     const { product_id } = req.params
 
@@ -22,7 +21,9 @@ module.exports.create = async (req, res) => {
             }
         })
 
-        await model.ProductImages.create({ path, product_id });
+        req.files.forEach(async (file) => {
+            await model.ProductImages.create({ path: file.filename, product_id });
+        })
 
         res.status(201).json({
             status: 'success',
