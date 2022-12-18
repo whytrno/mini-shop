@@ -1,0 +1,21 @@
+_id: req_58d6fe9c120441998131b2cf650b0c3a
+type: Request
+parentId: fld_c1161478d15448709b1c6806d6d69c92
+modified: 1671357629437
+created: 1671356609389
+url: "{{url}}/voucher/5"
+name: Claim voucher
+description: ""
+method: POST
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1671356609389
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

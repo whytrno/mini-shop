@@ -1,0 +1,41 @@
+_id: req_afb3993940304d97a7d325823481eded
+type: Request
+parentId: fld_44bff76907414fa6be9e535af16ea482
+modified: 1669095442020
+created: 1668619299531
+url: "{{url}}/admin/users"
+name: Add data
+description: ""
+method: POST
+body:
+  mimeType: application/x-www-form-urlencoded
+  params:
+    - id: pair_1ee32981d0844abb85a128dae1e6d006
+      name: name
+      value: bambang
+      description: ""
+    - id: pair_78342d7f040741a2971fbd3ef8e3d60f
+      name: email
+      value: whytrno@gmail.com
+      description: ""
+    - id: pair_972111d6a1a047e0aac03d47a9526455
+      name: password
+      value: qweasdzxc
+      description: ""
+    - id: pair_8562fbe058cc4af7ab9995992add757d
+      name: role
+      value: admin
+      description: ""
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/x-www-form-urlencoded
+authentication: {}
+metaSortKey: -1668506952545.75
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

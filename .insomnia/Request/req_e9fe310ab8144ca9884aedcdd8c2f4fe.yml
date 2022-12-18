@@ -1,0 +1,41 @@
+_id: req_e9fe310ab8144ca9884aedcdd8c2f4fe
+type: Request
+parentId: fld_09f90affe0ce4d188c219b6f8ac666d9
+modified: 1671344053722
+created: 1669116279034
+url: "{{url}}/products/1"
+name: Update data
+description: ""
+method: PUT
+body:
+  mimeType: application/x-www-form-urlencoded
+  params:
+    - id: pair_ccc03841d8a345ce8c58e480c1c3baa7
+      name: name
+      value: testad
+      description: ""
+    - id: pair_f64d162fe8874c4aaa7b005709921d4f
+      name: description
+      value: uqu12
+      description: ""
+    - id: pair_7dad1e66dbd940748a9f0084ad6d41ff
+      name: price
+      value: "982333"
+      description: ""
+    - id: pair_a8149991953a41759a09b763c600eccb
+      name: stock
+      value: "121"
+      description: ""
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/x-www-form-urlencoded
+authentication: {}
+metaSortKey: -1669104572900.5
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

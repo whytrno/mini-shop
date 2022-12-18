@@ -1,0 +1,21 @@
+_id: req_aaa7f29fc71742b780df166164839794
+type: Request
+parentId: fld_7f77b9155bab457c8696f3370742dbe9
+modified: 1670085314947
+created: 1670003666849
+url: "{{url}}/product/images/2"
+name: New Request
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1670003666849
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

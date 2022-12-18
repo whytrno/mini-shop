@@ -1,0 +1,21 @@
+_id: req_67e3d8fe4a2a4663892f9527debf22df
+type: Request
+parentId: fld_09f90affe0ce4d188c219b6f8ac666d9
+modified: 1669124292892
+created: 1669120236400
+url: "{{url}}/products/archive/1"
+name: Archive data
+description: ""
+method: PATCH
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1669101786875.375
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

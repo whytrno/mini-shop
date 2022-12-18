@@ -1,0 +1,21 @@
+_id: req_05c56e4de7a34acd8e1d2235fb70d03d
+type: Request
+parentId: fld_e265225b5077491a9eae0e5fbd67a537
+modified: 1671345984229
+created: 1671345981821
+url: "{{url}}/admin/category"
+name: All data
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1668581501667.25
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

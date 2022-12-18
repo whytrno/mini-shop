@@ -1,0 +1,21 @@
+_id: req_e03bd5459745457da662ab6133d0c735
+type: Request
+parentId: fld_44bff76907414fa6be9e535af16ea482
+modified: 1671346348843
+created: 1668619279389
+url: "{{url}}/admin/users/detail/1"
+name: Detail data
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1668544227106.5
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

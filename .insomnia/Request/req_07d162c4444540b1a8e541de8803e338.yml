@@ -1,0 +1,25 @@
+_id: req_07d162c4444540b1a8e541de8803e338
+type: Request
+parentId: fld_e00d21c3bf3c4bb6b75c11f25f40cc3e
+modified: 1671191386708
+created: 1669125049099
+url: "{{url}}/products/find"
+name: Find product
+description: ""
+method: GET
+body: {}
+parameters:
+  - id: pair_cc017678530641ad9e79363561c66c1b
+    name: key
+    value: dwadate
+    description: ""
+headers: []
+authentication: {}
+metaSortKey: -1669124451105
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

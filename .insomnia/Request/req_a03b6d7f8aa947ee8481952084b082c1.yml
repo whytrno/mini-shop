@@ -1,0 +1,37 @@
+_id: req_a03b6d7f8aa947ee8481952084b082c1
+type: Request
+parentId: fld_0cf18f1453c74645af563bbe1c62bd83
+modified: 1671342566868
+created: 1669095180522
+url: "{{url}}/register"
+name: Register
+description: ""
+method: POST
+body:
+  mimeType: application/x-www-form-urlencoded
+  params:
+    - id: pair_bad274766fea4cc18478078d7a0d7f3e
+      name: name
+      value: bambang
+      description: ""
+    - id: pair_16d4616273c047f6951b8f9b4b25e67c
+      name: email
+      value: whytrno2205@gmail.com
+      description: ""
+    - id: pair_6c4a70bb62b94789bca4266132ba23fd
+      name: password
+      value: qweasdzxc
+      description: ""
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/x-www-form-urlencoded
+authentication: {}
+metaSortKey: -1668637510176.25
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

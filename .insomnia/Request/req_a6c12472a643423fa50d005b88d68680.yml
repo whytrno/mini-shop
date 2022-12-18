@@ -1,0 +1,28 @@
+_id: req_a6c12472a643423fa50d005b88d68680
+type: Request
+parentId: fld_1b3005f7b046412a81db597bd5c05398
+modified: 1671346297139
+created: 1671345749045
+url: "{{url}}/admin/category/3"
+name: Update data
+description: ""
+method: PUT
+body:
+  mimeType: application/x-www-form-urlencoded
+  params:
+    - name: name
+      value: wahyawdu
+      id: pair_0f5b6649ad5c458bb48fb430851cbf9a
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/x-www-form-urlencoded
+authentication: {}
+metaSortKey: -1668488315265.375
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

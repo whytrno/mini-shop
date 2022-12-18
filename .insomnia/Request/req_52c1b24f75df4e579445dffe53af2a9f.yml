@@ -1,0 +1,29 @@
+_id: req_52c1b24f75df4e579445dffe53af2a9f
+type: Request
+parentId: fld_1b3005f7b046412a81db597bd5c05398
+modified: 1671346315826
+created: 1671345749031
+url: "{{url}}/admin/category"
+name: Add data
+description: ""
+method: POST
+body:
+  mimeType: application/x-www-form-urlencoded
+  params:
+    - id: pair_1ee32981d0844abb85a128dae1e6d006
+      name: name
+      value: Alat dapur
+      description: ""
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/x-www-form-urlencoded
+authentication: {}
+metaSortKey: -1668506952545.75
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

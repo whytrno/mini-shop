@@ -1,0 +1,21 @@
+_id: req_751e3353735d4e7f9a0a8a1207b3b8a4
+type: Request
+parentId: fld_e00d21c3bf3c4bb6b75c11f25f40cc3e
+modified: 1670003597084
+created: 1669124799307
+url: "{{url}}/products/detail/1"
+name: Detail product
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1669124451055
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

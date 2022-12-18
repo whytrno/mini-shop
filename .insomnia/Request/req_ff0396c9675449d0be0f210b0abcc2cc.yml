@@ -1,0 +1,21 @@
+_id: req_ff0396c9675449d0be0f210b0abcc2cc
+type: Request
+parentId: fld_1b3005f7b046412a81db597bd5c05398
+modified: 1671346306910
+created: 1671345749059
+url: "{{url}}/admin/category/3"
+name: Delete data
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1668488315215.375
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

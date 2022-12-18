@@ -1,0 +1,45 @@
+_id: req_c915ef4716e44918aada929b0f58668e
+type: Request
+parentId: fld_09f90affe0ce4d188c219b6f8ac666d9
+modified: 1671343323858
+created: 1669115717001
+url: "{{url}}/products"
+name: Add data
+description: ""
+method: POST
+body:
+  mimeType: application/x-www-form-urlencoded
+  params:
+    - id: pair_ccc03841d8a345ce8c58e480c1c3baa7
+      name: name
+      value: test
+      description: ""
+    - id: pair_f64d162fe8874c4aaa7b005709921d4f
+      name: description
+      value: adwd
+      description: ""
+    - id: pair_db2a63e2e1bc4daa9cc8b01bbae47a0d
+      name: price
+      value: "1"
+      description: ""
+    - id: pair_261877cdf4aa4931b3ca2efb9aaa10cc
+      name: stock
+      value: "1"
+      description: ""
+    - id: pair_0882ec412a6249de8506e13ed33ed15d
+      name: category_id
+      value: "1"
+      description: ""
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/x-www-form-urlencoded
+authentication: {}
+metaSortKey: -1669115717001
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

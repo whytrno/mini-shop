@@ -1,0 +1,21 @@
+_id: req_ded1f6f85ffe45788f46fea818626c21
+type: Request
+parentId: fld_e3f23ff4f525417a9c8eaaacb5f465c3
+modified: 1671356394767
+created: 1671356213794
+url: "{{url}}/admin/voucher/1"
+name: Delete data
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1668488315215.375
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

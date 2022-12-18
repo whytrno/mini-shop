@@ -1,0 +1,21 @@
+_id: req_05efa14319e948bc93526a16939bcec5
+type: Request
+parentId: fld_c1161478d15448709b1c6806d6d69c92
+modified: 1671357595680
+created: 1671356635128
+url: "{{url}}/voucher/10"
+name: Delete voucher from profile
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1670680138119
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

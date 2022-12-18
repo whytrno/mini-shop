@@ -1,0 +1,40 @@
+_id: req_ac420abef16a47b380ab222648e98899
+type: Request
+parentId: fld_44bff76907414fa6be9e535af16ea482
+modified: 1669094909316
+created: 1668656097320
+url: "{{url}}/admin/users/10"
+name: Update data
+description: ""
+method: PUT
+body:
+  mimeType: application/x-www-form-urlencoded
+  params:
+    - name: name
+      value: wahyawdu
+      id: pair_0f5b6649ad5c458bb48fb430851cbf9a
+    - id: pair_a9807b7488be49d484e2a17762943cbd
+      name: email
+      value: whytrwadno@gmail.com
+      description: ""
+    - id: pair_11259d50327a45d7937528d2c27af1e5
+      name: password
+      value: qweasdzxc
+      description: ""
+    - id: pair_70204c60937a41c693c533b369a52fe3
+      name: role
+      value: admin
+      description: ""
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/x-www-form-urlencoded
+authentication: {}
+metaSortKey: -1668488315265.375
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

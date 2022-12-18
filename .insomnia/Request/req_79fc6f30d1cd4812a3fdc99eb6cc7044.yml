@@ -1,0 +1,41 @@
+_id: req_79fc6f30d1cd4812a3fdc99eb6cc7044
+type: Request
+parentId: fld_e3f23ff4f525417a9c8eaaacb5f465c3
+modified: 1671356366408
+created: 1671356347296
+url: "{{url}}/admin/voucher/1"
+name: Update data
+description: ""
+method: PUT
+body:
+  mimeType: application/x-www-form-urlencoded
+  params:
+    - id: pair_1ee32981d0844abb85a128dae1e6d006
+      name: code
+      value: KJC81731
+      description: ""
+    - id: pair_448ba13c485241d69e2a2dfeab05b7a0
+      name: name
+      value: Happy Birthday1
+      description: ""
+    - id: pair_24ddc1123e4743acb2b061eecc700ad8
+      name: description
+      value: Tes1
+      description: ""
+    - id: pair_903a48d7be8f444baa6952c813be5189
+      name: discount
+      value: "15"
+      description: ""
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/x-www-form-urlencoded
+authentication: {}
+metaSortKey: -1668497633905.5625
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

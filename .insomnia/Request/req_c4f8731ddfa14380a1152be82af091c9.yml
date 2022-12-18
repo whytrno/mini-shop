@@ -1,0 +1,21 @@
+_id: req_c4f8731ddfa14380a1152be82af091c9
+type: Request
+parentId: fld_289e57cadeec497b9c3cb1b2c55e0538
+modified: 1671356598842
+created: 1671356598842
+url: "{{url}}/admin/user-voucher"
+name: All data
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1668600138947.625
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

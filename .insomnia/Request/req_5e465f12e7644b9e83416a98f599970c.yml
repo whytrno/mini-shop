@@ -1,0 +1,31 @@
+_id: req_5e465f12e7644b9e83416a98f599970c
+type: Request
+parentId: fld_7f77b9155bab457c8696f3370742dbe9
+modified: 1671345213776
+created: 1670007848674
+url: "{{url}}/product/images/1"
+name: Add data
+description: ""
+method: POST
+body:
+  mimeType: multipart/form-data
+  params:
+    - id: pair_bddb166875dd4cb596fdfdfe06a56a8a
+      name: image
+      value: test.jpg
+      description: ""
+      type: file
+      fileName: C:\Users\Wahyu\Downloads\logo.jpeg
+parameters: []
+headers:
+  - name: Content-Type
+    value: multipart/form-data
+authentication: {}
+metaSortKey: -1669564058977
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

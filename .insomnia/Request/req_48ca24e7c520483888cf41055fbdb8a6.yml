@@ -1,0 +1,21 @@
+_id: req_48ca24e7c520483888cf41055fbdb8a6
+type: Request
+parentId: fld_c1161478d15448709b1c6806d6d69c92
+modified: 1671356641670
+created: 1671356602182
+url: "{{url}}/voucher"
+name: All data
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1668609457587.8125
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
