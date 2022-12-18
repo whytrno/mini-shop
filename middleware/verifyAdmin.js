@@ -1,7 +1,8 @@
 module.exports.verifyAdmin = async (req, res, next) => {
-    console.log(req.role)
-    if (req.role === 'admin') {
-        req.role = req.role
+    const role = req.login_role
+    console.log(req)
+    if (role === 'admin') {
+        req.role = role
         next()
     } else {
         res.status(403).json({

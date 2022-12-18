@@ -65,8 +65,11 @@ module.exports.login = async (req, res) => {
             token: accessToken
         })
     } catch (error) {
-        res.status(error.code || 500).json(
-            error.data || 'internal server error'
+        res.status(error.code || 400).json(
+            error.data || {
+                status: "error",
+                message: error
+            }
         )
     }
 }

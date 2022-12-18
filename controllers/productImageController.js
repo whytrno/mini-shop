@@ -22,7 +22,7 @@ module.exports.create = async (req, res) => {
         })
 
         req.files.forEach(async (file) => {
-            await model.ProductImages.create({ path: file.filename, product_id });
+            await model.ProductImage.create({ path: file.filename, product_id });
         })
 
         res.status(201).json({
@@ -41,7 +41,7 @@ module.exports.deleteData = async (req, res) => {
     const { id } = req.params
 
     try {
-        const productImage = await model.ProductImages.findOne({
+        const productImage = await model.ProductImage.findOne({
             where: {
                 id
             },
@@ -82,12 +82,13 @@ module.exports.deleteData = async (req, res) => {
     }
 }
 
+// TODO: Belum jalan
 module.exports.bulkDelete = async (req, res) => {
     const user_id = req.login_id
     const { id } = req.params
 
     try {
-        const productImage = await model.ProductImages.findOne({
+        const productImage = await model.ProductImage.findOne({
             where: {
                 id
             },

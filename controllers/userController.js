@@ -20,8 +20,12 @@ module.exports.profile = async (req, res) => {
                     attributes: { exclude: productAttributesWithout },
                     include: [
                         {
-                            model: model.ProductImages,
+                            model: model.ProductImage,
                             attributes: productImageAttributes
+                        },
+                        {
+                            model: model.Category,
+                            attributes: ['id', 'name']
                         }
                     ]
                 }

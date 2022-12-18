@@ -9,18 +9,24 @@ const productImageAttributes = ['id', 'path']
 module.exports.getAllData = async (req, res) => {
     try {
         const products = await model.Product.findAll({
+            where: {
+                archived: false
+            },
             attributes: { exclude: productAttributesWithout },
             include: [
+                {
+                    model: model.ProductImage,
+                    attributes: productImageAttributes
+                },
                 {
                     model: model.User,
                     attributes: userAttributes
                 },
                 {
-                    model: model.ProductImages,
-                    attributes: productImageAttributes
+                    model: model.Category,
+                    attributes: ['id', 'name']
                 }
             ],
-
         });
 
         if (products.length === 0) {
@@ -42,7 +48,8 @@ module.exports.detail = async (req, res) => {
     try {
         const product = await model.Product.findOne({
             where: {
-                id
+                id,
+                archived: false
             },
             attributes: { exclude: productAttributesWithout },
             include: [
@@ -51,7 +58,7 @@ module.exports.detail = async (req, res) => {
                     attributes: userAttributes
                 },
                 {
-                    model: model.ProductImages,
+                    model: model.ProductImage,
                     attributes: productImageAttributes
                 }
             ]
@@ -86,7 +93,8 @@ module.exports.find = async (req, res) => {
             where: {
                 name: {
                     [Op.like]: `%${key}%`
-                }
+                },
+                archived: false
             },
             attributes: { exclude: productAttributesWithout },
             include: [
@@ -95,7 +103,7 @@ module.exports.find = async (req, res) => {
                     attributes: userAttributes
                 },
                 {
-                    model: model.ProductImages,
+                    model: model.ProductImage,
                     attributes: productImageAttributes
                 }
             ]
@@ -121,7 +129,7 @@ module.exports.find = async (req, res) => {
 }
 
 module.exports.create = async (req, res) => {
-    const { name, description, price, stock } = req.body
+    const { name, description, price, stock, category_id } = req.body
     const user_id = req.login_id
 
     try {
@@ -139,7 +147,7 @@ module.exports.create = async (req, res) => {
             }
         })
 
-        await model.Product.create({ name, description, price, stock, user_id });
+        await model.Product.create({ name, description, price, stock, user_id, category_id });
 
         res.status(201).json({
             status: 'success',
@@ -153,7 +161,7 @@ module.exports.create = async (req, res) => {
 }
 
 module.exports.update = async (req, res) => {
-    const { name, description, price, stock } = req.body
+    const { name, description, price, stock, category_id } = req.body
     const user_id = req.login_id
     const { id } = req.params
 
@@ -180,7 +188,7 @@ module.exports.update = async (req, res) => {
             }
         })
 
-        await product.update({ name, description, price, stock })
+        await product.update({ name, description, price, stock, category_id })
 
         res.status(200).json({
             status: 'success',

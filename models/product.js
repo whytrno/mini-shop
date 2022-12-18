@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Product.belongsTo(models.User, { foreignKey: 'user_id' });
-      Product.hasMany(models.ProductImages, { foreignKey: 'product_id' });
+      Product.hasMany(models.ProductImage, { foreignKey: 'product_id' });
+      Product.hasOne(models.Category, { foreignKey: 'id' });
     }
   }
   Product.init({
@@ -76,6 +77,15 @@ module.exports = (sequelize, DataTypes) => {
         min: {
           args: 1,
           msg: 'User id must be greater than 1'
+        }
+      }
+    },
+    category_id: {
+      type: DataTypes.INTEGER,
+      validate: {
+        min: {
+          args: 1,
+          msg: 'Category id must be greater than 1'
         }
       }
     },
