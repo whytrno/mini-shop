@@ -1,7 +1,8 @@
 const model = require('../models')
 
-const userAttributes = ['name', 'email']
-const productAttributesWithout = ['createdAt', 'updatedAt']
+const userAttributes = ['id', 'name', 'email']
+const productAttributesWithout = ['user_id', 'createdAt', 'updatedAt']
+const productImageAttributes = ['id', 'path']
 
 module.exports.profile = async (req, res) => {
 
@@ -13,10 +14,18 @@ module.exports.profile = async (req, res) => {
                 id: user_id
             },
             attributes: userAttributes,
-            include: [{
-                model: model.Product,
-                attributes: { exclude: productAttributesWithout }
-            }]
+            include: [
+                {
+                    model: model.Product,
+                    attributes: { exclude: productAttributesWithout },
+                    include: [
+                        {
+                            model: model.ProductImages,
+                            attributes: productImageAttributes
+                        }
+                    ]
+                }
+            ]
         })
 
         if (user === null) {

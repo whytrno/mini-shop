@@ -125,6 +125,20 @@ module.exports.create = async (req, res) => {
     const user_id = req.login_id
 
     try {
+        const product = await model.Product.findOne({
+            where: {
+                name: name
+            }
+        })
+
+        if (product !== null) throw ({
+            code: 400,
+            data: {
+                status: 'error',
+                message: 'You have already created this product'
+            }
+        })
+
         await model.Product.create({ name, description, price, stock, user_id });
 
         res.status(201).json({
@@ -132,7 +146,9 @@ module.exports.create = async (req, res) => {
             message: "Successfuly insert data"
         })
     } catch (error) {
-        res.status(400).json(beautyError(error))
+        res.status(error.code || 400).json(
+            error.data || beautyError(error) || 'internal server error'
+        )
     }
 }
 
