@@ -28,6 +28,15 @@ module.exports.profile = async (req, res) => {
                             attributes: ['id', 'name']
                         }
                     ]
+                },
+                {
+                    model: model.UserVoucher,
+                    attributes: { exclude: ['createdAt', 'updatedAt'] },
+                    include: [
+                        {
+                            model: model.Voucher,
+                        }
+                    ]
                 }
             ]
         })
@@ -40,6 +49,7 @@ module.exports.profile = async (req, res) => {
             res.status(200).json(user)
         }
     } catch (error) {
+        res.json(error)
         res.status(error.code || 500).json(
             error.data || 'internal server error'
         )

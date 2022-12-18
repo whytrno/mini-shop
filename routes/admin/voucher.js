@@ -1,5 +1,5 @@
 const express = require('express')
-const { getAllData, create, update, deleteData } = require('../../controllers/categoryController')
+const { getAllData, create, update, deleteData } = require('../../controllers/voucherController')
 const { refreshToken } = require('../../middleware/refreshToken');
 const { verifyAdmin } = require('../../middleware/verifyAdmin');
 const { verifyToken } = require('../../middleware/verifyToken');

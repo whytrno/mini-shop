@@ -139,6 +139,20 @@ module.exports.create = async (req, res) => {
             }
         })
 
+        const category = await model.Category.findOne({
+            where: {
+                id: category_id
+            }
+        })
+
+        if (category === null) throw ({
+            code: 404,
+            data: {
+                status: 'error',
+                message: 'Category not found'
+            }
+        })
+
         if (product !== null) throw ({
             code: 400,
             data: {
